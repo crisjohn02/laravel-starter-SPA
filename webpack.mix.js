@@ -1,5 +1,8 @@
 const mix = require('laravel-mix');
 
+/**
+ * Configure webpack to save the asynched components to js folder
+ */
 mix.webpackConfig({
    output: {
       chunkFilename: "js/[name].js"
@@ -17,5 +20,11 @@ mix.webpackConfig({
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.js("resources/js/app.js", "public/js")
+   .sass("resources/sass/app.scss", "public/css")
+   .styles(
+      ["node_modules/font-awesome/css/font-awesome.css"],
+      "public/css/font-awesome.css"
+   )
+   .version();
+mix.copy(["node_modules/font-awesome/fonts/"], "public/fonts");

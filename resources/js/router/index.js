@@ -1,9 +1,13 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 import Home from './../components/Home'
-//import About from './../components/About'
 
 Vue.use(VueRouter)
+
+/**
+ * First component to be loaded should NOT be asynched so it won't throw an undefined call error.
+ * The other routes however can be asynchronously called.
+ */
 
 const router = new VueRouter({
     routes: [

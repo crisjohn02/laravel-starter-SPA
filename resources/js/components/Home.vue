@@ -1,6 +1,7 @@
 <template>
   <div v-if="user.name">
-    Home component - Hello {{ user.name }}
+    Hello {{ user.name }}! Your account was created on
+    <i>{{ dt }}</i>
     <br />
     <router-link :to="{name: 'about'}">Go to About</router-link>
   </div>
@@ -14,6 +15,13 @@ export default {
     axios.get("api/user").then(response => {
       this.user = response.data;
     });
+  },
+  computed: {
+    dt: function() {
+      return moment(this.user.created_at)
+        .tz(timezone)
+        .format(time_format);
+    }
   }
 };
 </script>
